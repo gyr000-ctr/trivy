@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation("com.google.guava:guava:32.1.3-jre")
+    testImplementation 'junit:junit:4.13.2'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.9'
+    implementation libs.logback.classic
+    implementation "com.example:nover:${propertyVersion}"
+    // implementation 'com.commented:out:1.0'
+    api 'org.apache.commons:commons-lang3:3.14.0'
+}

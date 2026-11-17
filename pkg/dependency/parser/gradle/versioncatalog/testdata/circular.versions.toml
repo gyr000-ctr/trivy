@@ -1,0 +1,6 @@
+[versions]
+a = { ref = "b" }
+b = { ref = "a" }
+
+[libraries]
+foo = { module = "com.example:foo", version.ref = "a" }

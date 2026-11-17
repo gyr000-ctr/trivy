@@ -1,0 +1,5 @@
+[libraries]
+foo = "com.example:foo:1.0"
+
+[bundles]
+test = ["foo", "bar"]
