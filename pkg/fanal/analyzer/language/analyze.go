@@ -63,6 +63,14 @@ func Parse(ctx context.Context, fileType types.LangType, filePath string, r io.R
 	return toApplication(fileType, filePath, "", nil, parsedPkgs, parsedDependencies), nil
 }
 
+// ToApplication builds an Application from already-parsed packages and the
+// dependency graph. It is intended for lock files whose parser emits packages
+// for more than one ecosystem and therefore cannot use Parse directly.
+// Like Parse, lock-file packages get no per-library file path.
+func ToApplication(fileType types.LangType, filePath string, pkgs []types.Package, depGraph []types.Dependency) *types.Application {
+	return toApplication(fileType, filePath, "", nil, pkgs, depGraph)
+}
+
 // ParsePackage returns a parsed result of the package file
 func ParsePackage(ctx context.Context, fileType types.LangType, filePath string, r xio.ReadSeekerAt, parser Parser, checksum bool) (*types.Application, error) {
 	parsedPkgs, parsedDependencies, err := parser.Parse(ctx, r)

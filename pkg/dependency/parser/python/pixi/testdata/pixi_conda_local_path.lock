@@ -1,0 +1,16 @@
+version: 6
+environments:
+  default:
+    channels:
+    - url: https://conda.anaconda.org/conda-forge/
+    packages:
+      linux-64:
+      - conda: ./local-pkgs/foo
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/openssl-3.4.0-h7b32b05_1.conda
+packages:
+- conda: ./local-pkgs/foo
+  sha256: 1a95494abe572a8819c933f978df89f00bde72ea9432d46a70632599e029ea43
+  license: MIT
+- conda: https://conda.anaconda.org/conda-forge/linux-64/openssl-3.4.0-h7b32b05_1.conda
+  sha256: d4ef970e87ab9582c069b02f8cc808b10d98e1869a52d4e6608582a5a1cc8c22
+  license: Apache-2.0

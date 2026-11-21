@@ -1,7 +1,7 @@
 # Python
 
 Trivy supports the following Python package managers: `pip`, `Pipenv`, `Poetry` and `uv`.
-Trivy also supports the `pylock.toml` lock file format defined by [PEP 751](https://peps.python.org/pep-0751/).
+Trivy also supports the `pylock.toml` lock file format defined by [PEP 751](https://peps.python.org/pep-0751/) and the `pixi.lock` lock file used by [pixi](https://pixi.sh/).
 The following scanners are supported for package managers.
 
 | Package manager | SBOM | Vulnerability | License |
@@ -11,6 +11,7 @@ The following scanners are supported for package managers.
 | Poetry          |  ✓   |       ✓       |    -    |
 | uv              |  ✓   |       ✓       |    -    |
 | pylock          |  ✓   |       ✓       |    -    |
+| pixi            |  ✓   |   ✓[^3]   |  ✓[^3]  |
 
 In addition, Trivy supports these formats of Python packages: `egg`, `wheel` and `conda`.
 The following scanners are supported for Python packages.
@@ -31,6 +32,7 @@ The following table provides an outline of the features Trivy offers.
 | Poetry          | poetry.lock      |            ✓            |     [Exclude](#poetry)      |                  ✓                   |    -     |                Not needed                |
 | uv              | uv.lock          |            ✓            |     [Exclude](#uv)      |                  ✓                   |    -     |                Not needed                |
 | pylock          | pylock.toml[^2]  |            ✓            |     [Exclude](#pylock)      |                  ✓                   |    -     |                Not needed                |
+| pixi            | pixi.lock        |            ✓            |             -               |                  ✓                   |    -     |                Not needed                |
 
 
 | Packaging | Dependency graph |
@@ -152,7 +154,16 @@ License detection is not supported for `pylock`.
 
 By default, Trivy doesn't report development dependencies. Use the `--include-dev-deps` flag to include them.
 
+### pixi
+Trivy uses `pixi.lock` to identify dependencies. A single `pixi.lock` can mix conda and PyPI packages across multiple environments and platforms; Trivy extracts both ecosystems and reports them as separate applications over the same file.
+
+- PyPI packages are normalized per [PEP 503](https://peps.python.org/pep-0503/) and participate in vulnerability scanning and license detection like the other Python package managers.
+- Conda packages carry a `pkg:conda` [Package URL][purl] and are reported in the SBOM; they are not vulnerability scanned, matching the Conda packaging support above.
+
+Local path dependencies that cannot be resolved to a named package with a pinned version are skipped.
+
 [pep-751]: https://peps.python.org/pep-0751/
+[purl]: https://github.com/package-url/purl-spec
 
 ## Packaging
 Trivy parses the manifest files of installed packages in container image scanning and so on.
@@ -166,6 +177,7 @@ Trivy looks for `.dist-info/METADATA` to identify Python packages.
 
 [^1]: Trivy checks `python`, `python3`, `python2` and `python.exe` file names.
 [^2]: Also `pylock.<identifier>.toml` per [PEP 751][pep-751].
+[^3]: A `pixi.lock` can contain both conda and PyPI packages. Vulnerability scanning and license detection apply to the PyPI packages; conda packages are reported in the SBOM only, consistent with the Conda packaging support shown above.
 
 [dependency-graph]: ../../configuration/reporting.md#show-origins-of-vulnerable-dependencies
 [detection-priority]: ../../scanner/vulnerability.md#detection-priority

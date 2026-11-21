@@ -1,0 +1,22 @@
+version: 7
+environments:
+  default:
+    channels:
+    - url: https://conda.anaconda.org/conda-forge/
+    indexes:
+    - https://pypi.org/simple
+    packages:
+      linux-64:
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-h4bc722e_7.conda
+      - pypi: https://files.pythonhosted.org/packages/ab/cd/requests-2.32.3-py3-none-any.whl
+packages:
+- conda: https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-h4bc722e_7.conda
+  sha256: a1de970e87ab9582c069b02f8cc808b10d98e1869a52d4e6608582a5a1cc8c19
+  depends:
+  - libgcc-ng >=12
+  license: bzip2-1.0.6
+- pypi: https://files.pythonhosted.org/packages/ab/cd/requests-2.32.3-py3-none-any.whl
+  name: requests
+  version: 2.32.3
+  requires_dist:
+  - certifi>=2017.4.17

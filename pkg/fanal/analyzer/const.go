@@ -88,6 +88,7 @@ const (
 	TypePoetry       Type = "poetry"
 	TypeUv           Type = "uv"
 	TypePyLock       Type = "pylock"
+	TypePixi         Type = "pixi"
 
 	// Go
 	TypeGoBinary Type = "gobinary"
@@ -222,6 +223,7 @@ var (
 		TypePoetry,
 		TypeUv,
 		TypePyLock,
+		TypePixi,
 		TypeGoBinary,
 		TypeGoMod,
 		TypeRustBinary,
@@ -246,6 +248,7 @@ var (
 		TypePoetry,
 		TypeUv,
 		TypePyLock,
+		TypePixi,
 		TypeGoMod,
 		TypePom,
 		TypeConanLock,

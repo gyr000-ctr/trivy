@@ -1,0 +1,10 @@
+version: 7
+environments:
+  default:
+    packages:
+      linux-64:
+      - pypi: https://files.pythonhosted.org/packages/ab/cd/click-8.1.7-py3-none-any.whl
+packages:
+- pypi: https://files.pythonhosted.org/packages/ab/cd/click-8.1.7-py3-none-any.whl
+  name: click
+  version: 8.1.7

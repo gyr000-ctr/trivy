@@ -1,0 +1,16 @@
+version: 7
+environments:
+  default:
+    channels:
+    - url: https://conda.anaconda.org/conda-forge/
+    packages:
+      linux-64:
+      - pypi: https://files.pythonhosted.org/packages/ab/cd/requests-2.31.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/ef/gh/requests-2.32.3-py3-none-any.whl
+packages:
+- pypi: https://files.pythonhosted.org/packages/ab/cd/requests-2.31.0-py3-none-any.whl
+  name: requests
+  version: 2.31.0
+- pypi: https://files.pythonhosted.org/packages/ef/gh/requests-2.32.3-py3-none-any.whl
+  name: Requests
+  version: 2.32.3
